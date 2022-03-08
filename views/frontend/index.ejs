@@ -1,0 +1,84 @@
+<%- include('../includes/head.ejs')%>
+    <link rel="stylesheet" href="/frontend/css/home.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs')%>
+            <main>
+                <!--    Showcase Starts   -->
+                <section id="showcase">
+                    <div class="showcase-content">
+                        <h1>Find Your Answers Here ?
+                        </h1>
+                        <div class="searchBar">
+                            <form action="" method="get">
+                                <input type="text" placeholder="Search Here">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search "></i>
+                                    Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <!--    Showcase Ends   -->
+                <!--    Question Answers Block   -->
+                <section id="feeds" class="container">
+                    <div id="interests">
+                        <ul>
+                            <%for(let i of interest) {%>
+                                <li><a href="<%=i._id%>">
+                                        <%=i.category.toUpperCase()%>
+                                    </a></li>
+                                <%}%>
+                        </ul>
+                        <!-- <div class="text-center">
+                            <a href="" class="btn btn-gradient">All Categories <i
+                                    class="fas fa-chevron-circle-right"></i></a>
+                        </div> -->
+                    </div>
+
+                    <div id="question" class="">
+                        <%for (const q of questions){%>
+                            <div id="question-block" class="shadow">
+                                <div class="ques">
+                                    <a href="/question/<%=q._id%>" class="">
+                                        <%=q.title%>
+                                    </a>
+                                </div>
+                                <ul>
+                                    <%for (const i of q.interests){%>
+                                        <li><a href="" class="tag">
+                                                <%=i.toUpperCase()%>
+                                            </a></li>
+                                        <%}%>
+                                </ul>
+                                <div class="cta-ques mt-3">
+                                    <a href="" class="btn-sm btn-danger"><i class="far fa-lightbulb fa-lg"></i> Lets
+                                        Answer</a>
+                                    <%if(!user){%>
+                                        <div id="bookmark-ques" class="">
+                                            <a href="/login">
+                                                <i class="far fa-bookmark fa-2x"></i>
+                                            </a>
+                                        </div>
+                                        <%}else{%>
+                                            <div id="bookmark-ques" class="">
+                                                <i class="far fa-bookmark fa-2x"></i>
+                                                <i class="fas fa-bookmark fa-2x hide"></i>
+                                                <input type="hidden" name="quesId" id="quesId" value="<%=q._id%>">
+                                            </div>
+                                            <%}%>
+
+                                </div>
+                            </div>
+                            <%}%>
+
+                    </div>
+                </section>
+                <!--    Question Answers Block Ends   -->
+
+            </main>
+            <%- include('../includes/footer.ejs')%>
+                <script src="/frontend/js/bookmark.js"></script>
+    </body>
+
+    </html>
